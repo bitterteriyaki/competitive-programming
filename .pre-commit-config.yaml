@@ -1,0 +1,81 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+        name: 🔧 Trim trailing whitespace
+      - id: end-of-file-fixer
+        name: 🔧 Fix end of files
+      - id: check-yaml
+        name: 📝 Check YAML files
+      - id: check-json
+        name: 📝 Check JSON files
+      - id: check-toml
+        name: 📝 Check TOML files
+      - id: check-ast
+        name: 📝 Check Python AST syntax
+      - id: check-docstring-first
+        name: 📝 Check docstring first
+      - id: check-executables-have-shebangs
+        name: 📝 Check executables have shebangs
+      - id: check-shebang-scripts-are-executable
+        name: 📝 Check shebang scripts are executable
+      - id: pretty-format-json
+        name: 🔧 Pretty format JSON files
+        args:
+          - --autofix
+      - id: check-symlinks
+        name: 📝 Check symlinks
+      - id: destroyed-symlinks
+        name: 📝 Check destroyed symlinks
+      - id: check-added-large-files
+        name: 📝 Check added large files
+      - id: detect-private-key
+        name: 🔍 Detect private keys
+      - id: check-merge-conflict
+        name: 📝 Check merge conflict
+      - id: name-tests-test
+        name: 📝 Check test files naming convention
+      - id: sort-simple-yaml
+        name: 📝 Sort simple YAML files
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.10.0
+    hooks:
+      - id: mypy
+        name: 🔧 Run static type checker (mypy)
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-type-ignore
+        name: 📝 Check type ignore annotations
+      - id: python-no-eval
+        name: 📝 Check eval() calls
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.27.0
+    hooks:
+      - id: commitizen
+        name: 🔧 Run commitizen
+      - id: commitizen-branch
+        name: 🔧 Run commitizen (branch)
+        stages:
+          - push
+  - repo: https://github.com/pycqa/bandit
+    rev: 1.7.9
+    hooks:
+      - id: bandit
+        name: 🔧 Run security linter (bandit)
+        args:
+          - -c
+          - pyproject.toml
+        additional_dependencies:
+          - bandit[toml]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.4.10
+    hooks:
+      - id: ruff
+        name: 🔧 Run linter (ruff)
+      - id: ruff-format
+        name: 🔧 Run formatter (ruff)
