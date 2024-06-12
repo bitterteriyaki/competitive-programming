@@ -7,7 +7,7 @@ import subprocess
 from functools import cmp_to_key
 
 
-def compare(x, y):
+def compare(x: str, y: str) -> int:
     if x == "general.tex":
         return -1
     if y == "general.tex":
@@ -19,14 +19,14 @@ def compare(x, y):
         return -1
 
 
-def cpy_template():
+def cpy_template() -> None:
     shutil.copyfile(
         "generate_latex/template_theoretical.tex",
         "generate_latex/theoretical.tex",
     )
 
 
-def get_blocked():
+def get_blocked() -> set[str]:
     blocked = set()
     with open("generate_latex/block_from_theoretical.txt") as f:
         for line in f:
@@ -38,7 +38,7 @@ def get_blocked():
     return blocked
 
 
-def remove_aux():
+def remove_aux() -> None:
     items = [
         "theoretical.aux",
         "theoretical.log",
@@ -53,7 +53,7 @@ def remove_aux():
             os.remove(item)
 
 
-def move_output():
+def move_output() -> None:
     if os.path.exists("/theoretical.pdf"):
         os.remove("/theoretical.pdf")
 
@@ -61,7 +61,7 @@ def move_output():
         shutil.move("generate_latex/theoretical.pdf", "/")
 
 
-def get_dir():
+def get_dir() -> list[tuple[str, list[str]]]:
     path = "theoretical"
     section_list = os.listdir(path)
     section = []
@@ -90,7 +90,9 @@ def get_dir():
     return section
 
 
-def create_theoretical(section, blocked):
+def create_theoretical(
+    section: list[tuple[str, list[str]]], blocked: set[str]
+) -> None:
     cpy_template()
     path = "theoretical"
     aux = ""
@@ -112,7 +114,7 @@ def create_theoretical(section, blocked):
         texfile.write(aux)
 
 
-def main():
+def main() -> None:
     section = get_dir()
     blocked = get_blocked()
     create_theoretical(section, blocked)
@@ -131,7 +133,8 @@ def main():
             print("Erro na transformação de LaTex para pdf.")
             print("Execute manualmente para entender o erro:")
             print(
-                "pdflatex -interaction=nonstopmode -halt-on-error generate_latex/theoretical.tex"
+                "pdflatex -interaction=nonstopmode -halt-on-error "
+                "generate_latex/theoretical.tex"
             )
             remove_aux()
             exit(1)

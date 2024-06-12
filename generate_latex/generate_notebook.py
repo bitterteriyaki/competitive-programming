@@ -77,7 +77,9 @@ def get_dir() -> list[tuple[str, list[str]]]:
     return section
 
 
-def create_notebook(section, blocked) -> None:
+def create_notebook(
+    section: list[tuple[str, list[str]]], blocked: set[str]
+) -> None:
     path = "code"
     aux = ""
     with open("generate_latex/notebook.tex", "a") as texfile:
