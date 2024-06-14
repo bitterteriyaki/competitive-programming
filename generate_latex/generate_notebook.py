@@ -37,6 +37,7 @@ names = {
     "dfs": "DFS",
     "bfs": "BFS",
     "graph": "Grafos",
+    "combinations": "Combinações",
 }
 
 logging.basicConfig(
