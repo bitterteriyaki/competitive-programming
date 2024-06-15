@@ -46,6 +46,9 @@ repos:
     hooks:
       - id: mypy
         name: 🔧 Run static type checker (mypy)
+        additional_dependencies:
+          - rich>=13.7.1,<14.0.0
+          - click>=8.1.7,<9.0.0
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
