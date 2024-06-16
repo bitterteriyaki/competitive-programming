@@ -40,7 +40,7 @@ def get_template(name: str) -> str:
     "--template",
     "-t",
     default="templates/notebook.tex",
-    help="The template file.",
+    help="The path to the template file.",
 )
 @option("--output", "-o", default="notebook.pdf", help="The output file.")
 @option("--debug", "-d", is_flag=True, help="Enable debug mode.")
