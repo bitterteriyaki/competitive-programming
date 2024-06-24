@@ -22,7 +22,6 @@ target-version = "py312"
 show-fixes = true
 preview =  true
 output-format = "full"
-extend-exclude = ["apps/*/migrations/*"]
 
 fix = true
 line-length = 79

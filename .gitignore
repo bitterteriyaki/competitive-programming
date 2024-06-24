@@ -1,2 +1,3 @@
-./notebook.pdf
-./theoretical.pdf
+notebook.pdf
+theoretical.pdf
+generate_latex/assets/*.pdf
