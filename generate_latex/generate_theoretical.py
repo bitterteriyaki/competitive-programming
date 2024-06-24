@@ -21,8 +21,8 @@ def compare(x: str, y: str) -> int:
 
 def cpy_template() -> None:
     shutil.copyfile(
-        "generate_latex/template_theoretical.tex",
-        "generate_latex/theoretical.tex",
+        "templates/theoretical.tex",
+        "templates/saved_theoretical.tex",
     )
 
 
@@ -40,13 +40,13 @@ def get_blocked() -> set[str]:
 
 def remove_aux() -> None:
     items = [
-        "theoretical.aux",
-        "theoretical.log",
-        "theoretical.toc",
-        "theoretical.tex",
+        "saved_theoretical.aux",
+        "saved_theoretical.log",
+        "saved_theoretical.toc",
+        "saved_theoretical.tex",
         "texput.log",
-        "generate_latex/theoretical.tex",
-        "theoretical.out",
+        "templates/saved_theoretical.tex",
+        "saved_theoretical.out",
     ]
     for item in items:
         if os.path.exists(item):
@@ -54,11 +54,11 @@ def remove_aux() -> None:
 
 
 def move_output() -> None:
-    if os.path.exists("/theoretical.pdf"):
-        os.remove("/theoretical.pdf")
+    if os.path.exists("theoretical.pdf"):
+        os.remove("theoretical.pdf")
 
-    if os.path.exists("generate_latex/theoretical.pdf"):
-        shutil.move("generate_latex/theoretical.pdf", "/")
+    if os.path.exists("saved_theoretical.pdf"):
+        shutil.move("saved_theoretical.pdf", "theoretical.pdf")
 
 
 def get_dir() -> list[tuple[str, list[str]]]:
@@ -96,7 +96,7 @@ def create_theoretical(
     cpy_template()
     path = "theoretical"
     aux = ""
-    with open("generate_latex/theoretical.tex", "a") as texfile:
+    with open("templates/saved_theoretical.tex", "a") as texfile:
         for item, subsection in section:
             aux += "\\section{%s}\n" % item
             for file in subsection:
@@ -123,7 +123,7 @@ def main() -> None:
         "pdflatex",
         "-interaction=nonstopmode",
         "-halt-on-error",
-        "" "generate_latex/theoretical.tex",
+        "" "templates/saved_theoretical.tex",
     ]
     with open(os.devnull, "w") as DEVNULL:
         try:

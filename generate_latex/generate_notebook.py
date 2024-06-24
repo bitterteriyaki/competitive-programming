@@ -14,7 +14,7 @@ def get_item_name(item: str) -> str:
 
 def cpy_template() -> None:
     shutil.copyfile(
-        "generate_latex/template_notebook.tex", "generate_latex/notebook.tex"
+        "templates/notebook.tex", "templates/saved_notebook.tex"
     )
 
 
@@ -32,12 +32,12 @@ def get_blocked() -> set[str]:
 
 def remove_aux() -> None:
     items = [
-        "notebook.aux",
-        "notebook.log",
-        "notebook.toc",
-        "notebook.tex",
+        "saved_notebook.aux",
+        "saved_notebook.log",
+        "saved_notebook.toc",
+        "saved_notebook.tex",
         "texput.log",
-        "generate_latex/notebook.tex",
+        "templates/saved_notebook.tex",
     ]
 
     for item in items:
@@ -46,11 +46,11 @@ def remove_aux() -> None:
 
 
 def move_output() -> None:
-    if os.path.exists("/notebook.pdf"):
-        os.remove("/notebook.pdf")
+    if os.path.exists("notebook.pdf"):
+        os.remove("notebook.pdf")
 
-    if os.path.exists("generate_latex/notebook.pdf"):
-        shutil.move("generate_latex/notebook.pdf", "/")
+    if os.path.exists("saved_notebook.pdf"):
+        shutil.move("saved_notebook.pdf", "notebook.pdf")
 
 
 def get_dir() -> list[tuple[str, list[str]]]:
@@ -82,7 +82,7 @@ def create_notebook(
 ) -> None:
     path = "code"
     aux = ""
-    with open("generate_latex/notebook.tex", "a") as texfile:
+    with open("templates/saved_notebook.tex", "a") as texfile:
         for item, subsection in section:
             aux += "\\section{%s}\n" % get_item_name(item)
 
@@ -111,7 +111,7 @@ def main() -> None:
         "pdflatex",
         "-interaction=nonstopmode",
         "-halt-on-error",
-        "generate_latex/notebook.tex",
+        "templates/saved_notebook.tex",
     ]
     with open(os.devnull, "w") as DEVNULL:
         try:
@@ -122,7 +122,7 @@ def main() -> None:
             print("Execute manualmente para entender o erro:")
             print(
                 "pdflatex -interaction=nonstopmode -halt-on-error "
-                "generate_latex/notebook.tex"
+                "templates/saved_notebook.tex"
             )
             exit(1)
 
