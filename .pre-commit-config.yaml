@@ -42,10 +42,13 @@ repos:
       - id: sort-simple-yaml
         name: 📝 Sort simple YAML files
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.0
+    rev: v1.10.1
     hooks:
       - id: mypy
         name: 🔧 Run static type checker (mypy)
+        additional_dependencies:
+          - rich>=13.7.1,<14.0.0
+          - click>=8.1.7,<9.0.0
   - repo: https://github.com/pre-commit/pygrep-hooks
     rev: v1.10.0
     hooks:
@@ -62,16 +65,6 @@ repos:
         name: 🔧 Run commitizen (branch)
         stages:
           - push
-  - repo: https://github.com/pycqa/bandit
-    rev: 1.7.9
-    hooks:
-      - id: bandit
-        name: 🔧 Run security linter (bandit)
-        args:
-          - -c
-          - pyproject.toml
-        additional_dependencies:
-          - bandit[toml]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.4.10
     hooks:
