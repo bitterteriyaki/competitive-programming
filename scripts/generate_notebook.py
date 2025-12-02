@@ -10,15 +10,25 @@ from rich.logging import RichHandler
 log = logging.getLogger(__name__)
 
 normalized_names = {
-    "dp": "DP",
+    "dp": "Programação Dinâmica",
     "ds": "Estruturas de Dados",
     "graph": "Grafos",
     "math": "Matemática",
+    "geometry": "Geometria Computacional",
+    "general": "Geral",
     "dfs": "DFS",
     "bfs": "BFS",
     "ufds": "UFDS",
     "monostack": "Pilha Monótona",
     "monoqueue": "Fila Monótona",
+    "combinations": "Combinações",
+    "coin_change": "Problema do Troco",
+    "lis": "Maior Subsequência Crescente (LIS)",
+    "kadane": "Algoritmo de Kadane (Max Range Sum)",
+    "4sum": "Problema 4-Sum",
+    "tsp": "Problema do Caixeiro Viajante (TSP)",
+    "sweep_line": "Algoritmo de Sweep Line (Varredura)",
+    "kmp": "Algoritmo KMP (Knuth-Morris-Pratt)",
 }
 
 
