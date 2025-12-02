@@ -16,6 +16,9 @@ normalized_names = {
     "math": "Matemática",
     "dfs": "DFS",
     "bfs": "BFS",
+    "ufds": "UFDS",
+    "monostack": "Pilha Monótona",
+    "monoqueue": "Fila Monótona",
 }
 
 
